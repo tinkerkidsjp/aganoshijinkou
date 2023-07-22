@@ -36,13 +36,9 @@ function draw(man, woman, year) {
         var ctx = canvas.getContext('2d');
         // ここからPath(道順)をはじめる
         ctx.clearRect(0,0,350,350);
-        ctx.strokeStyle = 'rgb(0, 0, 0)';
-        ctx.lineWidth = 1;
+        ctx.strokeStyle = 'rgba(0, 0, 0, 0.6)';
+        ctx.lineWidth = 0.7;
         ctx.beginPath();
-        ctx.moveTo(0, 23);
-        ctx.lineTo(150, 23);
-        ctx.moveTo(200, 23);
-        ctx.lineTo(350, 23);
         ctx.moveTo(0, 326);
         ctx.lineTo(150, 326);
         ctx.moveTo(200, 326);
@@ -51,11 +47,41 @@ function draw(man, woman, year) {
         ctx.lineTo(150, 325);
         ctx.moveTo(200, 25);
         ctx.lineTo(200, 325);
-        ctx.stroke();
-        ctx.font = '25px sans-serif';
-        ctx.fillText('男性', 10, 50);
-        ctx.fillText('女性', 290, 50);
-        ctx.font = '18px sans-serif'
+        var x = 150
+        var zinkou = 0
+        ctx.font = '10px sans-serif'
+        for (var i = 0; i < 6; i++) {
+            ctx.moveTo(x, 326)
+            ctx.lineTo(x, 335)
+            if (zinkou == 0) {
+                ctx.fillText(zinkou, x - 3, 345)
+            } else {
+                ctx.fillText(zinkou, x - 9, 345)
+            }
+            
+            x = x - 25
+            zinkou = zinkou + 100
+        }
+        x = 200
+        zinkou = 0
+        for (var i = 0; i < 6; i++) {
+            ctx.moveTo(x, 326)
+            ctx.lineTo(x, 335)
+            if (zinkou == 0) {
+                ctx.fillText(zinkou, x - 3, 345)
+            } else {
+                ctx.fillText(zinkou, x - 9, 345)
+            }
+
+            x = x + 25
+            zinkou = zinkou + 100
+        }
+        ctx.fillText('(人)', 330, 335)
+        ctx.stroke()
+        ctx.font = '15px sans-serif';
+        ctx.fillText('男性', 65, 20);
+        ctx.fillText('女性', 265, 20);
+        ctx.font = '15px sans-serif'
         ctx.fillText(year + '年4月', 250, 320)
         ctx.font = '8px sans-serif';
         var y = 30;
@@ -96,8 +122,10 @@ function draw(man, woman, year) {
         var nenshouhiritu = Math.round(nenshou / total * 10000) / 100;
         var rounenhiritu = Math.round(rounen / total * 10000) / 100;
         ctx.font = '15px sans-serif'
-        ctx.fillText('年少人口' + nenshouhiritu + '％', 15, 310)
-        ctx.fillText('老年人口' + rounenhiritu + '％', 15, 85)
+        ctx.fillText('年少人口', 10, 303)
+        ctx.fillText(nenshouhiritu + '％',10 , 319)
+        ctx.fillText('老年人口', 10, 70)
+        ctx.fillText(rounenhiritu + '％', 10, 87)
     }
 }
 function test() {
@@ -139,15 +167,31 @@ function test() {
 </script>
 <style>
 /* canvasの境界線を1pxの黒の実線で塗る */
-canvas { border: 1px solid black; }
+canvas {
+    border: 1px solid black;
+    /* 1つ1つの要素を縦に並べる */
+    display: block;
+    /* 余白を左右均等にする */
+    margin: auto;
+}   
 input {
+    display: block;
+    margin: auto;
     width : 350px;
+}
+h1 {
+    text-align: center;
+    font-size: 25px;
+}
+p {
+    text-align: center;
 }
 </style>
 </head>   
 <!-- bodyがloadされた時にdrawという関数を実行する -->
 <body onload="draw(man2023, woman2023, 2023);">
 <h1>阿賀野市人口ピラミッド</h1>
+<p>2013年~2023年</p>
 <canvas id="tutorial" width="350" height="350"></canvas>
 <br>
 <input type="range" min="2013" max="2023" value="2023" step="1" onchange="test()" id="slider">
