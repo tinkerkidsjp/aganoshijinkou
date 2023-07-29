@@ -186,12 +186,15 @@ h1 {
 p {
     text-align: center;
 }
+body {
+    margin: 0;
+}
 </style>
 </head>   
 <!-- bodyがloadされた時にdrawという関数を実行する -->
 <body onload="draw(man2023, woman2023, 2023);">
 <h1>阿賀野市人口ピラミッド</h1>
-<p>2013年~2023年</p>
+<p>2013年～2023年</p>
 <canvas id="tutorial" width="350" height="350"></canvas>
 <br>
 <input type="range" min="2013" max="2023" value="2023" step="1" onchange="test()" id="slider" list="markers">
