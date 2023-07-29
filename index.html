@@ -186,18 +186,28 @@ h1 {
 p {
     text-align: center;
 }
-body {
-    margin: 0;
-}
 </style>
 </head>   
 <!-- bodyがloadされた時にdrawという関数を実行する -->
 <body onload="draw(man2023, woman2023, 2023);">
 <h1>阿賀野市人口ピラミッド</h1>
-<p>2013年～2023年</p>
+<p>2013年~2023年</p>
 <canvas id="tutorial" width="350" height="350"></canvas>
 <br>
-<input type="range" min="2013" max="2023" value="2023" step="1" onchange="test()" id="slider">
+<input type="range" min="2013" max="2023" value="2023" step="1" onchange="test()" id="slider" list="markers">
+<datalist id="markers">
+    <option value="2013"></option>
+    <option value="2014"></option>
+    <option value="2015"></option>
+    <option value="2016"></option>
+    <option value="2017"></option>
+    <option value="2018"></option>
+    <option value="2019"></option>
+    <option value="2020"></option>
+    <option value="2021"></option>
+    <option value="2022"></option>
+    <option value="2023"></option>
+</datalist>
 <p>スライダーを動かすと人口ピラミッドの変化が見られます</p>
 <p>データ出典：「住民基本台帳」（阿賀野市）</p>
  </body>
